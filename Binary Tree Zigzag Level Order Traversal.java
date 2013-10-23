@@ -107,3 +107,75 @@ public class Solution {
         return intResults;
     }
 }
+
+
+public class Solution2 {
+    public ArrayList<ArrayList<Integer>> zigzagLevelOrder(TreeNode root) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        
+        ArrayList<ArrayList<Integer>> intResults = new ArrayList<ArrayList<Integer>>();
+        
+        if(root == null) {
+            return intResults;
+        }
+        
+        ArrayList<TreeNode> cur = new ArrayList<TreeNode>();
+        cur.add(root);
+        
+        boolean reverse = true;
+        int i = 0;
+        //while(result.get(i) != null) {
+        while(true) {
+            ArrayList<TreeNode> parent = cur;
+            cur = new ArrayList<TreeNode>();
+            
+            ArrayList<Integer> parentData = new ArrayList<Integer>();
+            
+            if(reverse) {
+                for(int j = parent.size() - 1; j >= 0; j--) {
+                    //everytime add to the head, can use a linkedlist here, addFirst
+                    parentData.add(0, parent.get(j).val);
+                    if(parent.get(j).right != null) {
+                        cur.add(parent.get(j).right);
+                    }
+                    if(parent.get(j).left != null) {
+                        cur.add(parent.get(j).left);
+                    }
+                    
+                }
+                
+            }
+            else {
+                for(int j = parent.size() - 1; j >= 0; j--) {
+                    parentData.add(0, parent.get(j).val);
+                    if(parent.get(j).left != null) {
+                        cur.add(parent.get(j).left);
+                    }
+                    if(parent.get(j).right != null) {
+                        cur.add(parent.get(j).right);
+                    }
+                }
+                
+            }
+            reverse = !reverse;
+            intResults.add(parentData);
+            if(cur.isEmpty()) {
+                break;
+            }
+            
+            i++;
+        }
+        
+        // for(int k = 0; k < results.size(); k++) {
+        //     ArrayList<TreeNode> temp = results.get(k);
+        //     ArrayList<Integer> tempData = new ArrayList<Integer>();
+            
+        //     for(int m = 0; m < temp.size(); m++) {
+        //         tempData.add(temp.get(m).val);
+        //     }
+            
+        // }
+        
+        return intResults;
+    }
+}
