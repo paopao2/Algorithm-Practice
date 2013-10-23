@@ -35,3 +35,64 @@ public class Solution {
         }
     }
 }
+
+public class Solution2 {
+    public void setZeroes(int[][] matrix) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        
+        boolean firstRowHasZero = false;
+        boolean firstColumnHasZero = false;
+        
+        int rowLength = matrix.length;
+        int columnLength = matrix[0].length;
+        
+        for (int i = 0; i < columnLength; i++) {
+            if (matrix[0][i] == 0) {
+                firstRowHasZero = true;
+            }
+        }
+        
+        for (int j = 0; j < rowLength; j++) {
+            if (matrix[j][0] == 0) {
+                firstColumnHasZero = true;
+            }
+        }
+        
+        for (int i = 1; i < columnLength; i++) {
+            for (int j = 1; j < rowLength; j++) {
+                if (matrix[j][i] == 0) {
+                    matrix[0][i] = 0;
+                    matrix[j][0] = 0;
+                }
+            }
+        }
+        
+        for (int i = 1; i < columnLength; i++) {
+            if (matrix[0][i] == 0) {
+                for (int j = 1; j < rowLength; j++) {
+                    matrix[j][i] = 0;
+                }
+            }
+        }
+        
+        for (int j = 1; j < rowLength; j++) {
+            if (matrix[j][0] == 0) {
+                for (int i = 1; i < columnLength; i++) {
+                    matrix[j][i] = 0;
+                }
+            }
+        }
+        
+        if (firstRowHasZero) {
+            for (int i = 0; i < columnLength; i++) {
+                matrix[0][i] = 0;
+            }
+        }
+        
+        if (firstColumnHasZero) {
+            for (int j = 0; j < rowLength; j++) {
+                matrix[j][0] = 0;
+            }
+        }
+    }
+}
