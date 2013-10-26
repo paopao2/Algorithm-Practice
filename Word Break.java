@@ -10,8 +10,27 @@ Return true because "leetcode" can be segmented as "leet code".
 
 public class Solution {
     public boolean wordBreak(String s, Set<String> dict) {
+        if (s == null || dict.isEmpty()) {
+            return false;
+        }
+        boolean[] chars = new boolean[s.length() + 1];
+        chars[0] = true;
+        
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (chars[j] && dict.contains(s.substring(j, i))) {
+                    chars[i] = true;
+                }
+            }
+        }
+        return chars[s.length()];
+    }
+}
+
+public class Solution {
+    public boolean wordBreak(String s, Set<String> dict) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
-        //TODO: 
+        //TODO: CANNOT PASS THE LAST TEST CASE
         if (s.length() == 0) {
             return true;
         }
@@ -36,3 +55,4 @@ public class Solution {
         }
     }
 }
+
