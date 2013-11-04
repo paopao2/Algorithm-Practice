@@ -7,7 +7,11 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
- 
+/*
+Straight forward approach:
+Inorder traverse the tree, put the nodes in a treenode list and the values in an integer list.
+Sort the value list and update the treenode list's values one by one.
+*/
 /*
 Inorder traverse, keep the previous tree node,
 Find first misplaced node by
