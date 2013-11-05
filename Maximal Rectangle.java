@@ -3,6 +3,19 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle con
 
 */
 
+
+/*
+Case 1 -- matrix(i, j) = 1
+H(i, j) = H(i-1, j) + 1
+L(i, j) = max( L(i-1, j), the position of the left  nearest 0 in this row )
+R(i, j) = min( R(i-1, j), the position of the right nearest 0 in this row )
+
+Case 2 -- matrix(i, j) = 0
+H(i, j) = 0
+L(i, j) = 0
+R(i, j) = n
+*/
+
 public class Solution {
     public int maximalRectangle(char[][] matrix) {
         // IMPORTANT: Please reset any member data you declared, as
