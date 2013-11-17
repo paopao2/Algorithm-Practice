@@ -37,6 +37,7 @@ public class Solution {
         int left = Math.max(0, subPath(root.left, curMax));
         int right = Math.max(0, subPath(root.right, curMax));
         int max = root.val + left + right;
+        //use set(0, value) can't pass large test
         curMax.add(0, Math.max(curMax.get(0), max));
         //can only return one path (left or right) for recursion use
         return root.val + Math.max(left, right);
